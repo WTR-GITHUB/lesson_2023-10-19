@@ -1,33 +1,18 @@
-text = "In this lecture we will review some additional functionalities of python built-in data structures."
-# i = 0
-# for leter in text:
-#     if leter == "e":
-#         i += 1
-# print(f"Radziu 'e' tekste yra: {i}")
-
-my_leters = [i for i, v in enumerate(text, start=1) if v == "e"]
-print(f"Radziu 'e' tekste yra: {len(my_leters)}")
-
-# word_list = text.split(" ")
-
-# my_words = [i for i, v in enumerate(text.split(" "), start=1) if len(v) > 5]
-my_words = [word for word in text.split() if len(word) > 5]
-print(f"Zodziu ilgesniu nei 5 simboliai yra: {len(my_words)}") 
-
-# text = text.replace(" ", "")
-# text = text.replace("-", "")
-# text = text.replace(".", "")
-text = text.lower()
-my_dict = {}
-
-for leter in text:
-    if leter.isalpha():
-        if leter in my_dict.keys():
-            my_dict[leter] += 1
-        else:
-            my_dict[leter] = 1
-# my_dict = sorted(my_dict.items())
-
-# print({key : value for key, value in my_dict})
-maximum = max(my_dict, key=my_dict.get)
-print(maximum, my_dict[maximum])
+quantity_sentences = len(split_object(sentences, "."))
+if quantity_sentences >= 3:
+    iterator = 0
+    all_sentences = []
+    for sentence in split_object(sentences, "."):
+        all_sentences.append(creat_dictionary(split_clear_words(sentences)))
+    while iterator < quantity_sentences:        
+        one_sentence: Dict = all_sentences[iterator]
+        total_words = count_word_statistics(one_sentence)
+        s1 = len(one_sentence["long_word"]) / total_words
+        s2 = len(one_sentence["medium_word"]) / total_words
+        s3 = len(one_sentence["short_word"]) / total_words
+        print(f"Sentence {iterator+1} has: ")
+        print(" Long words: {:.0%}\n".format(s1),
+              "Medium words: {:.0%}\n".format(s2),
+              "Short words: {:.0%}".format(s3))
+        print("Most common letter: ",most_common_letter(split_object(sentences, ".")[iterator]),"\n")
+        iterator += 1

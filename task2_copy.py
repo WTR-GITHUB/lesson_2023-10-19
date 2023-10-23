@@ -1,6 +1,6 @@
 from typing import List, Dict
 import random
-all_word_dict = {"long_word" :[], "medium_word":[], "short_word":[]}
+
 sentences = "A bridge is a structure built to span a physical obstacle (such as a body of water, valley, road, or railway) without blocking the way underneath. It is constructed for the purpose of providing passage over the obstacle, which is usually something that is otherwise difficult or impossible to cross. There are many different designs of bridges, each serving a particular purpose and applicable to different situations."
 
 def split_object(text: str, char: str) -> List[str]:
@@ -52,11 +52,32 @@ def count_word_statistics(sentence_dict: Dict):
 
 quantity_sentences = len(split_object(sentences, "."))
 if quantity_sentences >= 3:
-    full_dictionary = (creat_dictionary(split_clear_words(sentences)))
-    word_quantity = []
+
+    iterator = 0
     for sentence in split_object(sentences, "."):
-        word_quantity.append(len(split_clear_words(sentence)))
-    
+        one_sentence = (creat_dictionary(split_clear_words(sentences)))
+        total_words = count_word_statistics(one_sentence)
+        s1 = len(one_sentence["long_word"]) / total_words
+        s2 = len(one_sentence["medium_word"]) / total_words
+        s3 = len(one_sentence["short_word"]) / total_words
+        print(f"Sentence {iterator+1} has: ")
+        print(" Long words: {:.0%}\n".format(s1),
+              "Medium words: {:.0%}\n".format(s2),
+              "Short words: {:.0%}".format(s3))
+        print("Most common letter: ",most_common_letter(split_object(sentences, ".")[iterator]),"\n")
+        # sentence_data = data_store(one_sentence, iterator, data)
+        # iterator += 1
+
+def data_store(one_sent, i, in_data):
+    data = {"Sentence": i+1,
+            "long_word": len(one_sent["long_word"]),
+            "medium_word": len(one_sent["medium_word"]),
+            "short_word": len(one_sent["short_word"])}
+    return out_data
+
+
+full_dictionary = (creat_dictionary(split_clear_words(sentences)))
+    # print(full_dictionary)
 else:
     print(f"You entered {quantity_sentences} sentences it is not enaught")
 
