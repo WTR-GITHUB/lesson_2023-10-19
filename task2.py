@@ -1,4 +1,5 @@
 from typing import List, Dict
+import random
 
 sentences = "A bridge is a structure built to span a physical obstacle (such as a body of water, valley, road, or railway) without blocking the way underneath. It is constructed for the purpose of providing passage over the obstacle, which is usually something that is otherwise difficult or impossible to cross. There are many different designs of bridges, each serving a particular purpose and applicable to different situations."
 
@@ -24,19 +25,36 @@ def sort_words(few_sentences: List[str], position: int) -> List[Dict[str, List[s
         i +=1 
     return few_sentences[position]
 
-    
-quantity_sentences = len(split_object(sentences, "."))
-if quantity_sentences >= 3:
-    a = 0
-    while a < quantity_sentences:
-        test: Dict = sort_words(split_object(sentences, "."), a)
-        sk = 0
-        for key, value in test.items():
-            sk = sk + len([item for item in value])
-        s1 = (len(test["long_word"]) / sk)
-        s2 = (len(test["medium_word"]) / sk)
-        s3 = (len(test["short_word"]) / sk)
-        print("{:.0%}".format(s1), "{:.0%}".format(s2), "{:.0%}".format(s3), "\n")
-        a += 1
-else:
-    print(f"You entered {quantity_sentences} sentences it is not enaught")
+def most_common_letter(text: str) -> str:
+    my_dict = {}
+    for leter in text:
+        if leter.isalpha():
+            if leter in my_dict.keys():
+                my_dict[leter] += 1
+            else:
+                my_dict[leter] = 1
+    maximum = max(my_dict, key=my_dict.get)
+    return (maximum, my_dict[maximum])
+
+# quantity_sentences = len(split_object(sentences, "."))
+# if quantity_sentences >= 3:
+#     a = 0
+#     while a < quantity_sentences:        
+#         test: Dict = sort_words(split_object(sentences, "."), a)
+#         sk = 0
+#         for key, value in test.items():
+#             sk = sk + len([item for item in value])
+#         s1 = (len(test["long_word"]) / sk)
+#         s2 = (len(test["medium_word"]) / sk)
+#         s3 = (len(test["short_word"]) / sk)
+#         print("{:.0%}".format(s1), "{:.0%}".format(s2), "{:.0%}".format(s3))
+#         print(most_common_letter(split_object(sentences, ".")[a]), "\n")
+#         a += 1
+# else:
+#     print(f"You entered {quantity_sentences} sentences it is not enaught")
+
+
+test_dikt = creat_dictionary(clear_words(sentences))
+print(test_dikt)
+fdgf = []
+random.choice()
