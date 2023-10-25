@@ -54,9 +54,16 @@ quantity_sentences = len(split_object(sentences, "."))
 if quantity_sentences >= 3:
     full_dictionary = (creat_dictionary(split_clear_words(sentences)))
     word_quantity = []
+    the_letter = []
     for sentence in split_object(sentences, "."):
         word_quantity.append(len(split_clear_words(sentence)))
-    
+        the_letter.append(most_common_letter(sentence))
+    print(the_letter)
+    print(word_quantity)
+    r = random.choice(full_dictionary["long_word"])
+    long_iterator = 0
+    while long_iterator < 
+    print(r)  
 else:
     print(f"You entered {quantity_sentences} sentences it is not enaught")
 
